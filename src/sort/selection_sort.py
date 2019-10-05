@@ -1,3 +1,4 @@
+import copy
 from typing import List
 
 
@@ -5,7 +6,11 @@ def main():
     org_sort = [17, 11, 12, 5, 14, 9, 6, 16, 4,
                 10, 1, 19, 13, 15, 0, 2, 3, 18, 7, 8]
 
-    print(selection_sort(org_sort))
+    result = selection_sort(org_sort)
+    assert sorted(org_sort) == result
+
+    print("result: {}".format(result))
+
 
 #######################################################
 # 選択ソート アルゴリズム
@@ -37,12 +42,12 @@ def main():
 
 
 def selection_sort(org_list: List[int]) -> List[int]:
+    list = copy.copy(org_list)
     new_sort = []
-    # len(org_sort)分 for で回す
-    for _ in [0 for _ in range(len(org_list))]:
-        m = min(org_list)
-        index = org_list.index(m)
-        value = org_list.pop(index)
+    for _ in range(len(list)):
+        m = min(list)
+        index = list.index(m)
+        value = list.pop(index)
         new_sort.append(value)
 
         print("m:{}, index:{}, new_sort:{}".format(m, index, new_sort))
